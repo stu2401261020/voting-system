@@ -1,0 +1,13 @@
+{
+  "orgName": "voting",
+  "edition": "Enterprise",
+  "features": ["Communities"],
+  "settings": {
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": true
+    }
+  }
+}

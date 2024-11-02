@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Country</fullName>
+        <default>true</default>
+        <label>Country</label>
+    </customValue>
+    <customValue>
+        <fullName>Province</fullName>
+        <default>false</default>
+        <label>Province</label>
+    </customValue>
+    <customValue>
+        <fullName>Municipality</fullName>
+        <default>false</default>
+        <label>Municipality</label>
+    </customValue>
+    <customValue>
+        <fullName>Subdivision</fullName>
+        <default>false</default>
+        <label>Subdivision</label>
+    </customValue>
+    <masterLabel>Location Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
