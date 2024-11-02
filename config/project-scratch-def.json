@@ -1,7 +1,7 @@
 {
   "orgName": "voting",
   "edition": "Enterprise",
-  "features": ["Communities"],
+  "features": ["Communities", "PersonAccounts"],
   "settings": {
     "communitiesSettings": {
       "enableNetworksEnabled": true
