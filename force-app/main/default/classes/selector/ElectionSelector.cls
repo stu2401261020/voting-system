@@ -3,7 +3,7 @@
  * @author Created by vassil.petkov@next-consult.com on 2024/11/24.
  */
 
-public without sharing class ElectionSelector implements IElectionSelector {
+public with sharing class ElectionSelector implements IElectionSelector {
 	public static IElectionSelector getInstance() {
 		return new ElectionSelector();
 	}
@@ -49,6 +49,7 @@ public without sharing class ElectionSelector implements IElectionSelector {
 						Description__c,
 						BackgroundImageUrl__c
 				FROM Election__c
+				WHERE Id = :electionId
 		];
 	}
 }

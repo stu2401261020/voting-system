@@ -1,0 +1,14 @@
+<!--
+ - Created by vassil.petkov@next-consult.com on 2024/11/24.
+ -->
+
+<!-- Choice Overview -->
+<template>
+	<lightning-card if:true={choice} title={choice.Name}>
+		<div class="slds-p-horizontal_small">
+			<lightning-formatted-rich-text
+					value={choice.Description__c}
+			></lightning-formatted-rich-text>
+		</div>
+	</lightning-card>
+</template>

@@ -38,7 +38,7 @@ export default class CurrentElections extends LightningElement {
 	@wire(getCurrentElections)
 	currentElections({data, error}) {
 		if (data) {
-			console.log('data', data)
+			console.log('data', data);
 			this.data = data;
 		}
 		if (error) {

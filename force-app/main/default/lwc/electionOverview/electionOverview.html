@@ -1,0 +1,36 @@
+<!--
+ - Created by vassil.petkov@next-consult.com on 2024/11/24.
+ -->
+
+<!-- Election Overview -->
+<template>
+	<lightning-layout horizontal-align={horizontalAlign}>
+		<lightning-layout-item size="8" padding="around-small">
+			<lightning-card if:true={election} title={election.Name}>
+				<div class="slds-p-horizontal_small">
+					<lightning-formatted-rich-text
+
+							value={election.Description__c}
+					></lightning-formatted-rich-text>
+				</div>
+			</lightning-card>
+		</lightning-layout-item>
+		<lightning-layout-item size="4" padding="around-small">
+			<lightning-card if:true={choices} title="Choices">
+			<ul class="slds-has-dividers_bottom-space">
+				<template for:each={choices} for:item="choice">
+					<li class="slds-item" key={choice.choiceId}>
+						<lightning-tile label={choice.choiceName} href={choice.choiceUrl} type="media">
+							<lightning-avatar slot="media"
+							                  src="https://www.lightningdesignsystem.com/assets/images/avatar1.jpg"
+							                  fallback-icon-name="standard:person_account"
+							                  alternative-text="Bruce Wayne"></lightning-avatar>
+							<p class="slds-item">{choice.shortDescription}</p>
+						</lightning-tile>
+					</li>
+				</template>
+			</ul>
+			</lightning-card>
+		</lightning-layout-item>
+	</lightning-layout>
+</template>

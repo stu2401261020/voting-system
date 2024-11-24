@@ -29,7 +29,7 @@ export default class UpcomingElections extends LightningElement {
 	@wire(getUpcomingElections)
 	upcomingElections({data, error}) {
 		if (data) {
-			console.log('data', data)
+			console.log('data', data);
 			this.data = data;
 		}
 		if (error) {

@@ -34,6 +34,7 @@
     <tabs>Election__c</tabs>
     <tabs>Location__c</tabs>
     <tabs>Choice__c</tabs>
+    <tabs>Test</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Election_Manager_UtilityBar</utilityBar>
 </CustomApplication>

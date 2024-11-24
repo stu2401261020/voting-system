@@ -4,6 +4,10 @@
  */
 
 public with sharing class ChoiceSelector implements IChoiceSelector {
+	public static IChoiceSelector getInstance() {
+		return new ChoiceSelector();
+	}
+
 	public List<Choice__c> getChoicesForElection( Id electionId ) {
 		return [
 				SELECT Name,
