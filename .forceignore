@@ -10,3 +10,18 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+**/pages/BandwidthExceeded*
+**/pages/CommunitiesLanding*
+**/pages/CommunitiesLogin*
+**/pages/CommunitiesSelfReg*
+**/pages/Exception*
+**/pages/FileNotFound*
+**/pages/InMaintenance*
+**/pages/StdExceptionTemplate*
+**/classes/CommunitiesLandingController*
+**/classes/CommunitiesLoginController*
+**/classes/CommunitiesSelfRegConfirmController*
+**/classes/CommunitiesSelfRegController*
+**/components/SitePoweredBy*
+**/staticresources/SiteSamples*
