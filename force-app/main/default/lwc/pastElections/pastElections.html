@@ -1,0 +1,17 @@
+<!--
+ - Created by vassil.petkov@next-consult.com on 2024/11/24.
+ -->
+
+<!-- Past Elections -->
+<template>
+	<lightning-card title="Past elections">
+		<lightning-datatable
+				if:true={data}
+				columns={columns}
+				data={data}
+				key-field="Id"
+				onrowaction={handleRowAction}
+				hide-checkbox-column
+		></lightning-datatable>
+	</lightning-card>
+</template>

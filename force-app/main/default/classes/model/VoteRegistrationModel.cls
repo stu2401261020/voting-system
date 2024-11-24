@@ -8,5 +8,5 @@ public with sharing class VoteRegistrationModel {
 		this.vote_registration_id = voteRegistrationId;
 	}
 
-	public String vote_registration_id { get; set; }
+	public String vote_registration_id { get; private set; }
 }

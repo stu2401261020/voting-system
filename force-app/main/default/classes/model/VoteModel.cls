@@ -9,6 +9,6 @@ public with sharing class VoteModel {
 		this.answer = answer;
 	}
 
-	public String vote_registration_id { get; set; }
-	public String answer { get; set; }
+	public String vote_registration_id { get; private set; }
+	public String answer { get; private set; }
 }
