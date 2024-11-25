@@ -31,4 +31,8 @@ public with sharing class ChoiceSelector implements IChoiceSelector {
 				WHERE Id = :choiceId
 		];
 	}
+
+	public List<Choice__c> getChoicesByIds( List<Id> choicesIds ) {
+		return [ SELECT Id FROM Choice__c WHERE Id IN :choicesIds ];
+	}
 }

@@ -47,7 +47,11 @@ public with sharing class ElectionSelector implements IElectionSelector {
 				SELECT
 						Name,
 						Description__c,
-						BackgroundImageUrl__c
+						BackgroundImageUrl__c,
+						Published__c,
+						VotingStartDate__c,
+						VotingEndDate__c,
+						Location__c
 				FROM Election__c
 				WHERE Id = :electionId
 		];

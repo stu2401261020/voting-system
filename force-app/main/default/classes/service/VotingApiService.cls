@@ -18,6 +18,9 @@ public with sharing class VotingApiService implements IVotingApiService {
 		HttpResponse res = new Http().send(req);
 		System.debug(res);
 		System.debug(res.getBody());
+		if( res.getStatusCode() != 200 ) {
+			throw new VotingException();
+		}
 	}
 
 	public void createVotes( List<VoteModel> votes ) {
@@ -27,6 +30,9 @@ public with sharing class VotingApiService implements IVotingApiService {
 		HttpResponse res = new Http().send(req);
 		System.debug(res);
 		System.debug(res.getBody());
+		if( res.getStatusCode() != 200 ) {
+			throw new VotingException();
+		}
 	}
 
 	public List<String> getVotes( String voteRegistrationId ) {
