@@ -6,8 +6,7 @@ import { api, LightningElement, wire } from 'lwc';
 import getChoiceDetails from '@salesforce/apex/ChoiceOverviewController.getChoiceDetails';
 
 export default class ChoiceOverview extends LightningElement {
-	@api
-	choiceId = 'a03QI00000Kf0jiYAB';
+	@api choiceId = 'a03QI00000Kf0jiYAB';
 	choice;
 
 	@wire(getChoiceDetails, { choiceId: '$choiceId' })

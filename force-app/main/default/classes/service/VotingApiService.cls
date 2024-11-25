@@ -12,21 +12,9 @@ public with sharing class VotingApiService implements IVotingApiService {
 	}
 
 	public void createVoteRegistration( VoteRegistrationModel voteRegistration ) {
-		req.setEndpoint(ENDPOINT + '/vote_registrations/');
-		req.setMethod('POST');
-		req.setBody(JSON.serialize(voteRegistration));
-		HttpResponse res = new Http().send(req);
-		System.debug(res);
-		System.debug(res.getBody());
-		if( res.getStatusCode() != 200 ) {
-			throw new VotingException();
-		}
-	}
-
-	public void createVotes( List<VoteModel> votes ) {
 		req.setEndpoint(ENDPOINT + '/votes/');
 		req.setMethod('POST');
-		req.setBody(JSON.serialize(votes));
+		req.setBody(JSON.serialize(voteRegistration));
 		HttpResponse res = new Http().send(req);
 		System.debug(res);
 		System.debug(res.getBody());

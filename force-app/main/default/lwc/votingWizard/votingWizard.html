@@ -4,5 +4,32 @@
 
 <!-- Voting Wizard -->
 <template>
+	<lightning-card title={voteNowTitle} if:true={election}>
+		<div class="slds-p-around_medium">
+			<p>{election.ShortDescription__c}</p>
 
+			<lightning-datatable
+					if:true={choices}
+					columns={columns}
+					data={choices}
+					key-field="Id"
+					onrowaction={handleRowAction}
+					max-row-selection="1"
+					onrowselection={handleRowSelection}
+			></lightning-datatable>
+
+			<p>Register your voting password here. Once you vote, you can use it to check your vote.</p>
+			<lightning-input
+					type="password"
+					label="Voting password"
+					onchange={handlePasswordChange}
+					min-length=5
+					required="true"></lightning-input>
+			<lightning-button
+					label={voteButtonLabel}
+					onclick={handleVoteButton}
+					variant="brand"
+					disabled={voteButtonDisabled}></lightning-button>
+		</div>
+	</lightning-card>
 </template>

@@ -46,6 +46,7 @@ public with sharing class ElectionSelector implements IElectionSelector {
 		return [
 				SELECT
 						Name,
+						ShortDescription__c,
 						Description__c,
 						BackgroundImageUrl__c,
 						Published__c,

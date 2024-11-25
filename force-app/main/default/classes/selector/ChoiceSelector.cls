@@ -33,6 +33,6 @@ public with sharing class ChoiceSelector implements IChoiceSelector {
 	}
 
 	public List<Choice__c> getChoicesByIds( List<Id> choicesIds ) {
-		return [ SELECT Id FROM Choice__c WHERE Id IN :choicesIds ];
+		return [ SELECT Election__c FROM Choice__c WHERE Id IN :choicesIds ];
 	}
 }

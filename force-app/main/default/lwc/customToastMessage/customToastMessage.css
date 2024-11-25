@@ -1,0 +1,42 @@
+/**
+ * Created by liliateodosheva on 20.06.24.
+ */
+
+.my-icon-success, .my-icon-info, .my-icon-error, .my-icon-warning {
+    --slds-c-icon-color-foreground-default: #ffffff;
+}
+
+.toastMessage{
+    font-size: large;
+    text-wrap: wrap;
+}
+
+.toast-success{
+    background: #2D844A;
+    color: #ffffff;
+}
+
+.toast-warning{
+    background: #DD7A00;
+    color: #ffffff;
+}
+
+.toast-error{
+    background: #B90516;
+    color: #ffffff;
+}
+
+.toast-info{
+    background: #747474;
+    color: #ffffff;
+}
+
+div.slds-notify__close lightning-icon{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px){
+    div.slds-notify_toast{
+        min-width: auto !important;
+    }
+}

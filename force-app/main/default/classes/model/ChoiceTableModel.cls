@@ -4,7 +4,15 @@
  */
 
 public with sharing class ChoiceTableModel {
-	public ChoiceTableModel( Choice__c choice ) {
+	public static List<ChoiceTableModel> parseChoices( List<Choice__c> inputChoices ) {
+		List<ChoiceTableModel> choices = new List<ChoiceTableModel>();
+		for( Choice__c choice : inputChoices) {
+			choices.add( new ChoiceTableModel(choice));
+		}
+		return choices;
+	}
+
+	private ChoiceTableModel( Choice__c choice ) {
 		this.choiceId = choice.Id;
 		this.choiceName = choice.Name;
 		this.shortDescription = choice.ShortDescription__c;

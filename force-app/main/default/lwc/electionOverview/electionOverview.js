@@ -7,8 +7,7 @@ import getElectionOverviewData from '@salesforce/apex/ElectionOverviewController
 import getChoices from '@salesforce/apex/ElectionOverviewController.getChoices';
 
 export default class ElectionOverview extends LightningElement {
-	@api
-	electionId = 'a01QI00000PiftwYAB';
+	@api electionId = 'a01QI00000PiftwYAB';
 	election;
 	choices;
 

@@ -1,0 +1,34 @@
+<!--
+ - Created by liliateodosheva on 20.06.24.
+ -->
+
+<!--How to import the toast message component:
+<c-custom-toast-message lwc:ref="toastMessage"></c-custom-toast-message>-->
+
+<!--How to display the toast message:
+this.refs.toastMessage.showToast('success', 'Message', 5000);
+this.refs.toastMessage.showToast('error', 'Message', 5000);
+this.refs.toastMessage.showToast('warning', 'Message', 5000);
+this.refs.toastMessage.showToast('info', 'Message', 5000);-->
+
+<!-- Custom Toast Message -->
+<template>
+    <template lwc:if={showToastBar}>
+        <div class="slds-notify_container">
+            <div class={outerClass} role="status">
+                <span class="slds-assistive-text">{type}</span>
+                <span class={innerClass} title={message}>
+                    <lightning-icon icon-name={icon} alternative-text="icon" class={iconClass} size="small"></lightning-icon>
+                </span>
+                <div class="slds-notify__content">
+                    <p class="toastMessage">
+                        {message}
+                    </p>
+                </div>
+                <div class="slds-notify__close">
+                    <lightning-icon icon-name="utility:close" alternative-text="close" onclick={closeModel} class={iconClass} size="small"></lightning-icon>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

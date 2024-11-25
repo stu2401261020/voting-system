@@ -15,57 +15,32 @@ public with sharing class VotingWizardController {
 	}
 
 	@AuraEnabled( Cacheable=true )
-	public static List<Choice__c> getChoices( Id electionId ) {
-		return ChoiceSelector.getInstance().getChoicesForElection( electionId );
-	}
-
-	@AuraEnabled
-	public static Boolean hasRegistered( Id electionId ) {
-		Election__c election = ElectionSelector.getInstance().getElectionDetails( electionId );
-		List<ElectionVoter__c> electionVoter = validateElection( election );
-		if( electionVoter.size() == 0 ) {
-			return false;
-		}
-		return true;
-
-	}
-
-	@AuraEnabled
-	public static void registerToVote( Id electionId, String voterPassword ) {
-		Election__c election = ElectionSelector.getInstance().getElectionDetails( electionId );
-		List<ElectionVoter__c> electionVoter = validateElection( election );
-		if( electionVoter.size() > 0 ) {
-			throw new VotingException();
-		}
-
-		electionVoter.add( new ElectionVoter__c( Election__c = election.Id, Voter__c = getVoterId() ) );
-
-		VotingApiService.getInstance().createVoteRegistration( new VoteRegistrationModel(
-				hashVoterPassword( electionId, voterPassword )
-		) );
-		insert electionVoter;
+	public static List<ChoiceTableModel> getChoices( Id electionId ) {
+		return ChoiceTableModel.parseChoices( ChoiceSelector.getInstance().getChoicesForElection( electionId ) );
 	}
 
 	@AuraEnabled
 	public static void vote( Id electionId, List<Id> choicesIds, String voterPassword ) {
 		Election__c election = ElectionSelector.getInstance().getElectionDetails( electionId );
-		List<ElectionVoter__c> electionVoter = validateElection( election );
+		validateElection( election );
 		List<Choice__c> choices = ChoiceSelector.getInstance().getChoicesByIds( choicesIds );
 		validateChoices( choices, electionId );
 
-		if( electionVoter.isEmpty() || electionVoter[ 0 ].HasVoted__c ) {
-			throw new VotingException();
+		ElectionVoter__c electionVoter =  new ElectionVoter__c( Election__c = election.Id, Voter__c = getVoterId() );
+
+		List<String> stringChoices = new List<String>();
+		for( Id choiceId : choicesIds ) {
+			stringChoices.add( choiceId );
 		}
 
-		List<VoteModel> votes = new List<VoteModel>();
-		for( Id choiceId : choicesIds ) {
-			votes.add( new VoteModel( hashVoterPassword( electionId, voterPassword ), choiceId ) );
-		}
-		VotingApiService.getInstance().createVotes( votes );
-		electionVoter[ 0 ].HasVoted__c = true;
+		VotingApiService.getInstance().createVoteRegistration( new VoteRegistrationModel(
+				hashVoterPassword( electionId, voterPassword ),
+				stringChoices
+		) );
+		insert electionVoter;
 	}
 
-	private static List<ElectionVoter__c> validateElection( Election__c election ) {
+	private static void validateElection( Election__c election ) {
 		if( !election.Published__c ||
 				election.VotingStartDate__c > Datetime.now() ||
 				election.VotingEndDate__c < Datetime.now() ) {
@@ -73,10 +48,9 @@ public with sharing class VotingWizardController {
 		}
 		List<ElectionVoter__c> electionVoter =
 				ElectionVoterSelector.getInstance().getElectionVoterRecord( election.Id, getVoterId() );
-		if( electionVoter.size() > 0 && electionVoter[ 0 ].HasVoted__c ) {
-			throw new VotingException( 'You have already voted on this election.' );
+		if( electionVoter.size() > 0 ) {
+			throw new VotingException('You have already voted on this election.');
 		}
-		return electionVoter;
 	}
 
 	private static void validateChoices( List<Choice__c> choices, Id electionId ) {

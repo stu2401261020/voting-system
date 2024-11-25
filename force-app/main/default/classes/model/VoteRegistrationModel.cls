@@ -4,9 +4,11 @@
  */
 
 public with sharing class VoteRegistrationModel {
-	public VoteRegistrationModel( String voteRegistrationId ) {
+	public VoteRegistrationModel( String voteRegistrationId, List<String> votes ) {
 		this.vote_registration_id = voteRegistrationId;
+		this.votes = votes;
 	}
 
 	public String vote_registration_id { get; private set; }
+	public List<String> votes { get; set; }
 }

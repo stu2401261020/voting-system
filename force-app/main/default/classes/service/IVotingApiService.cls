@@ -5,6 +5,5 @@
 
 public interface IVotingApiService {
 	void createVoteRegistration( VoteRegistrationModel voteRegistration );
-	void createVotes( List<VoteModel> votes );
 	List<String> getVotes( String voteRegistrationId );
 }
