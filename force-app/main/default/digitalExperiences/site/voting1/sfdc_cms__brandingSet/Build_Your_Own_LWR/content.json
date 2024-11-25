@@ -73,7 +73,7 @@
       "FormElementCaptionTextFontSize" : "0.75rem",
       "FormElementCaptionTextFontStyle" : "normal",
       "FormElementCaptionTextFontWeight" : "400",
-      "FormElementCaptionTextLetterSpacing" : "0",
+      "FormElementCaptionTextLetterSpacing" : "0em",
       "FormElementCaptionTextLineHeight" : "1.5",
       "FormElementCaptionTextTransform" : "none",
       "FormElementCheckboxBackgroundColor" : "var(--dxp-s-form-element-color-background)",

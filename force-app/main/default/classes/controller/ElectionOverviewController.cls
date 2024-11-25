@@ -4,17 +4,13 @@
  */
 
 public with sharing class ElectionOverviewController {
-	@AuraEnabled(Cacheable=true)
+	@AuraEnabled( Cacheable=true )
 	public static Election__c getElectionOverviewData( Id electionId ) {
 		return ElectionSelector.getInstance().getElectionDetails( electionId );
 	}
 
-	@AuraEnabled(Cacheable=true)
+	@AuraEnabled( Cacheable=true )
 	public static List<ChoiceTableModel> getChoices( Id electionId ) {
-		List<ChoiceTableModel> choices = new List<ChoiceTableModel>();
-		for( Choice__c choice : ChoiceSelector.getInstance().getChoicesForElection( electionId ) ) {
-			choices.add( new ChoiceTableModel( choice ) );
-		}
-		return choices;
+		return ChoiceTableModel.parseChoices( ChoiceSelector.getInstance().getChoicesForElection( electionId ) );
 	}
 }

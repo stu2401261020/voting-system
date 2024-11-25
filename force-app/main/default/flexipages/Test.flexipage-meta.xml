@@ -3,6 +3,18 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>checkVote</componentName>
+                <identifier>c_checkVote</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>votingWizard</componentName>
+                <identifier>c_votingWizard</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>currentElections</componentName>
                 <identifier>c_currentElections</identifier>
             </componentInstance>

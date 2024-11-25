@@ -20,11 +20,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>PersonalVotingPasswordHash__c</field>
+                <field>ElectionVoterUnique__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>ElectionVoterUnique__c</field>
+                <behavior>Edit</behavior>
+                <field>HasVoted__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

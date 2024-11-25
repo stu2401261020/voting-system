@@ -1,0 +1,28 @@
+<!--
+ - Created by vassil.petkov@next-consult.com on 2024/11/25.
+ -->
+
+<!-- Check Vote -->
+<template>
+	<lightning-card title="Check your vote here">
+		<div class="slds-p-around_medium">
+
+			<p>Use your voting password to check who you voted for.</p>
+			<lightning-input
+					type="password"
+					label="Voting password"
+					onchange={handlePasswordChange}
+					min-length=5
+					required="true"></lightning-input>
+
+			<lightning-button
+					label="Check"
+					onclick={handleButton}
+					variant="brand"
+					disabled={buttonDisabled}></lightning-button>
+			<template if:true={response}>
+				<p>{response}</p>
+			</template>
+		</div>
+	</lightning-card>
+</template>

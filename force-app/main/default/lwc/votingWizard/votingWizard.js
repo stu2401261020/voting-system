@@ -11,6 +11,7 @@ import vote from '@salesforce/apex/VotingWizardController.vote';
 import choiceOverviewModal from 'c/choiceOverviewModal';
 
 export default class VotingWizard extends LightningElement {
+	@api electionId = 'a01QI00000PiftwYAB';
 	columns = [
 		{
 			label: 'Choice',
@@ -33,11 +34,9 @@ export default class VotingWizard extends LightningElement {
 			}
 		}
 	];
-	choices;
 
-	@api
-	electionId = 'a01QI00000PiftwYAB';
 	election;
+	choices;
 
 	selectedChoice;
 	password;

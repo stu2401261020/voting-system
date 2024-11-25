@@ -20,12 +20,19 @@
           },
           "children" : [ {
             "children" : [ {
-              "attributes" : {
-                "imageInfos" : "",
-                "richTextValue" : "<div style=\"display: flex; justify-content: center; align-items: center; margin: 50px 0; flex-direction: column; text-align: center;\"><div style=\"background-image: url(assets/img/desert.svg) !important; background-size: cover; background-position: center; height: 300px; width: 100%; max-width: 600px; min-width: 300px;\"></div><h1 class=\"slds-text-heading_medium slds-p-bottom_x-small\">Start Building Your Page</h1> <div>Drag and drop a component into the content slots.</div></div>"
-              },
-              "definition" : "community_builder:htmlEditor",
-              "id" : "d6da233b-767d-4031-a64b-aeac4c931945",
+              "attributes" : { },
+              "definition" : "c:currentElections",
+              "id" : "ca1e52de-f28c-4cda-b749-659fa43bfd8b",
+              "type" : "component"
+            }, {
+              "attributes" : { },
+              "definition" : "c:upcomingElections",
+              "id" : "e7ed3843-15b6-4ae6-884e-6e09b88e92ea",
+              "type" : "component"
+            }, {
+              "attributes" : { },
+              "definition" : "c:pastElections",
+              "id" : "e5614146-576a-4414-9489-1cb075cf4daa",
               "type" : "component"
             } ],
             "id" : "11710c67-4709-4510-8a96-a3cbfdb83979",
