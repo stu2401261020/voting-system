@@ -6,7 +6,7 @@
 public with sharing class UpcomingElectionsController {
 	@AuraEnabled( Cacheable=true )
 	public static List<ElectionTableModel> getUpcomingElections() {
-		Set <Id> locationIds = new Set<Id> { 'a02QI000006haCrYAI' };
+		Set <Id> locationIds = UserSelector.getInstance().getCurrentUserLocationIds();
 		List<ElectionTableModel> elections = new List<ElectionTableModel>();
 
 		for( Election__c election : ElectionSelector.getInstance().getUpcomingElections( locationIds ) ) {

@@ -8,7 +8,7 @@ public with sharing class ElectionTableModel {
 		this.electionId = election.Id;
 		this.electionName = election.Name;
 		this.shortDescription = election.ShortDescription__c;
-		this.electionUrl = '/election-overview/' + election.Id;
+		this.electionUrl = '/voting/election-overview?electionId=' + election.Id;
 	}
 
 	@AuraEnabled

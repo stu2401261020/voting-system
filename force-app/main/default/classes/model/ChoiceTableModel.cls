@@ -16,7 +16,7 @@ public with sharing class ChoiceTableModel {
 		this.choiceId = choice.Id;
 		this.choiceName = choice.Name;
 		this.shortDescription = choice.ShortDescription__c;
-		this.choiceUrl = '/choice-overview/' + choice.Id;
+		this.choiceUrl = '/voting/choice-overview?choiceId=' + choice.Id;
 	}
 
 	@AuraEnabled

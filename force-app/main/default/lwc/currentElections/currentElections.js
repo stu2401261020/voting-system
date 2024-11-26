@@ -3,9 +3,11 @@
  */
 
 import { LightningElement, wire } from 'lwc';
-import getCurrentElections from '@salesforce/apex/CurrentElectionsController.getCurrentElections';
+import { NavigationMixin } from 'lightning/navigation';
+import getCurrentElections
+	from '@salesforce/apex/CurrentElectionsController.getCurrentElections';
 
-export default class CurrentElections extends LightningElement {
+export default class CurrentElections extends NavigationMixin(LightningElement) {
 	columns = [
 		{
 			label: 'Election',
@@ -13,7 +15,7 @@ export default class CurrentElections extends LightningElement {
 			type: 'url',
 			typeAttributes: {
 				label: { fieldName: 'electionName' },
-				target: '_blank',
+				target: '_self',
 				tooltip: 'Click to see more details.'
 			}
 		},
@@ -29,39 +31,54 @@ export default class CurrentElections extends LightningElement {
 			typeAttributes: {
 				label: 'Vote',
 				name: 'voteAction',
-				title: 'Click to Vote'
+				title: 'Click to vote',
+				variant: 'brand'
+			}
+		},
+		{
+			label: 'Check Vote',
+			type: 'button',
+			initialWidth: 135,
+			typeAttributes: {
+				label: 'Check',
+				name: 'checkAction',
+				title: 'Click to check your vote'
 			}
 		}
 	];
 	data;
 
 	@wire(getCurrentElections)
-	currentElections({data, error}) {
+	currentElections({ data, error }) {
 		if (data) {
-			console.log('data', data);
 			this.data = data;
 		}
 		if (error) {
 			console.log('error', error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
 		}
 	}
 
 	handleRowAction(event) {
-		const action = event.detail.action;
-		const row = event.detail.row;
-		console.log('action.name', action.name);
-		//console.log('row.electionId', row.electionId)
+		switch (event.detail.action.name) {
+			case 'voteAction':
+				this.navigateToPage('Voting_Wizard__c', event.detail.row.electionId);
+				break;
+			case 'checkAction':
+				this.navigateToPage('Check_Vote__c', event.detail.row.electionId);
+				break;
+		}
+	}
 
-		/*		switch (action.name) {
-					case 'voteAction':
-						alert('Vote on: ' + JSON.stringify(row));
-						break;
-					case 'delete':
-						const rows = this.data;
-						const rowIndex = rows.indexOf(row);
-						rows.splice(rowIndex, 1);
-						this.data = rows;
-						break;
-				}*/
+	navigateToPage(pageName, electionId) {
+		this[NavigationMixin.Navigate]({
+										   type: 'comm__namedPage',
+										   attributes: {
+											   name: pageName
+										   },
+										   state: {
+											   electionId: electionId
+										   }
+									   });
 	}
 }

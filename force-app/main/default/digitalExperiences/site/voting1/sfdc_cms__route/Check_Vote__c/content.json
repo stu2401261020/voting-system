@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Check Vote",
+  "contentBody" : {
+    "activeViewId" : "Check_Vote",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-check-vote",
+    "urlPrefix" : "check-vote"
+  },
+  "urlName" : "check-vote"
+}

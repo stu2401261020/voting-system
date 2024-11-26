@@ -3,6 +3,7 @@
  */
 
 import { api, LightningElement, wire } from 'lwc';
+import { CurrentPageReference, NavigationMixin } from 'lightning/navigation';
 
 import getElection from '@salesforce/apex/VotingWizardController.getElection';
 import getChoices from '@salesforce/apex/VotingWizardController.getChoices';
@@ -10,8 +11,8 @@ import vote from '@salesforce/apex/VotingWizardController.vote';
 
 import choiceOverviewModal from 'c/choiceOverviewModal';
 
-export default class VotingWizard extends LightningElement {
-	@api electionId = 'a01QI00000PiftwYAB';
+export default class VotingWizard extends NavigationMixin(LightningElement) {
+	@api electionId;
 	columns = [
 		{
 			label: 'Choice',
@@ -53,36 +54,45 @@ export default class VotingWizard extends LightningElement {
 		return !this.selectedChoice || !this.password;
 	}
 
+	@wire(CurrentPageReference)
+	getStateParameters(currentPageReference) {
+		if (currentPageReference) {
+			this.electionId = currentPageReference.state.electionId;
+		}
+	}
+
 	@wire(getElection, { electionId: '$electionId' })
 	getElection({ data, error }) {
 		if (data) {
-			console.log('election', data);
 			this.election = data;
 		}
 		if (error) {
 			console.log('error', error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
+
+			this.handleCancel();
 		}
 	}
 
 	@wire(getChoices, { electionId: '$election.Id' })
 	getChoices({ data, error }) {
 		if (data) {
-			console.log('choices', data);
 			this.choices = data;
 		}
 		if (error) {
 			console.log('error', error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
+			this.handleCancel();
 		}
 	}
 
 	handleRowAction(event) {
 		choiceOverviewModal.open({
-									 recordId: event.detail.row.choiceId
+									 choiceId: event.detail.row.choiceId
 								 });
 	}
 
 	handleRowSelection(event) {
-		console.log('handleRowSelection', event.detail.selectedRows);
 		this.selectedChoice = event.detail.selectedRows[0];
 	}
 
@@ -100,9 +110,19 @@ export default class VotingWizard extends LightningElement {
 				 choicesIds: [this.selectedChoice.choiceId],
 				 voterPassword: this.password
 			 }).then(() => {
-			console.log('Voting successful.');
+			this.refs.toastMessage.showToast('success', 'Voting successful.', 5000);
 		}).catch((error) => {
 			console.log(error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
 		});
+	}
+
+	handleCancel() {
+		this[NavigationMixin.Navigate]({
+										   type: 'comm__namedPage',
+										   attributes: {
+											   name: 'Home'
+										   }
+									   });
 	}
 }

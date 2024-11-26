@@ -2,16 +2,24 @@
  * Created by vassil.petkov@next-consult.com on 2024/11/25.
  */
 
-import { api, LightningElement } from 'lwc';
+import { api, LightningElement, wire } from 'lwc';
+import { CurrentPageReference, NavigationMixin } from 'lightning/navigation';
 import getVoteChoice from '@salesforce/apex/CheckVoteController.getVoteChoice';
 
-export default class CheckVote extends LightningElement {
-	@api electionId = 'a01QI00000PiftwYAB';
+export default class CheckVote extends NavigationMixin(LightningElement) {
+	@api electionId;
 	password;
 	response;
 
 	get buttonDisabled() {
 		return !this.password;
+	}
+
+	@wire(CurrentPageReference)
+	getStateParameters(currentPageReference) {
+		if (currentPageReference) {
+			this.electionId = currentPageReference.state.electionId;
+		}
 	}
 
 	handlePasswordChange(event) {
@@ -27,10 +35,18 @@ export default class CheckVote extends LightningElement {
 						  electionId: this.electionId,
 						  voterPassword: this.password
 					  }).then((result) => {
-			console.log(result);
 			this.response = result;
 		}).catch((error) => {
 			console.log(error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
 		});
+	}
+	handleCancel() {
+		this[NavigationMixin.Navigate]({
+										   type: 'comm__namedPage',
+										   attributes: {
+											   name: 'Home'
+										   }
+									   });
 	}
 }

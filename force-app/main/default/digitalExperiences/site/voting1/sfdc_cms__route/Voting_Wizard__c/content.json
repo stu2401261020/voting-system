@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Voting Wizard",
+  "contentBody" : {
+    "activeViewId" : "Voting_Wizard",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-voting-wizard",
+    "urlPrefix" : "voting-wizard"
+  },
+  "urlName" : "voting-wizard"
+}

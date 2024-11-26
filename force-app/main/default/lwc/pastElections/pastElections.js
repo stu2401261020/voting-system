@@ -3,9 +3,10 @@
  */
 
 import { LightningElement, wire } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import getPastElections from '@salesforce/apex/PastElectionsController.getPastElections';
 
-export default class PastElections extends LightningElement {
+export default class PastElections extends NavigationMixin(LightningElement) {
 	columns = [
 		{
 			label: 'Election',
@@ -13,7 +14,7 @@ export default class PastElections extends LightningElement {
 			type: 'url',
 			typeAttributes: {
 				label: { fieldName: 'electionName' },
-				target: '_blank',
+				target: '_self',
 				tooltip: 'Click to see more details.'
 			}
 		},
@@ -38,30 +39,23 @@ export default class PastElections extends LightningElement {
 	@wire(getPastElections)
 	pastElections({data, error}) {
 		if (data) {
-			console.log('data', data);
 			this.data = data;
 		}
 		if (error) {
 			console.log('error', error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
 		}
 	}
 
 	handleRowAction(event) {
-		const action = event.detail.action;
-		const row = event.detail.row;
-		console.log('action.name', action.name);
-		//console.log('row.electionId', row.electionId)
-
-		/*		switch (action.name) {
-					case 'voteAction':
-						alert('Vote on: ' + JSON.stringify(row));
-						break;
-					case 'delete':
-						const rows = this.data;
-						const rowIndex = rows.indexOf(row);
-						rows.splice(rowIndex, 1);
-						this.data = rows;
-						break;
-				}*/
+		this[NavigationMixin.Navigate]({
+										   type: 'comm__namedPage',
+										   attributes: {
+											   name: 'Check_Vote__c'
+										   },
+										   state: {
+											   electionId: event.detail.row.electionId
+										   }
+									   });
 	}
 }

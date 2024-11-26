@@ -4,6 +4,7 @@
 
 <!-- Current Elections -->
 <template>
+	<c-custom-toast-message lwc:ref="toastMessage"></c-custom-toast-message>
 	<lightning-card title="Current elections">
 		<lightning-datatable
 				if:true={data}

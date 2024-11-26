@@ -4,10 +4,14 @@
 
 <!-- Election Overview -->
 <template>
+	<c-custom-toast-message lwc:ref="toastMessage"></c-custom-toast-message>
 	<lightning-layout horizontal-align={horizontalAlign}>
 		<lightning-layout-item size="8" padding="around-small">
 			<lightning-card if:true={election} title={election.Name}>
 				<div class="slds-p-horizontal_small">
+					<lightning-button
+							label="Home"
+							onclick={handleCancel}></lightning-button>
 					<lightning-formatted-rich-text
 
 							value={election.Description__c}
@@ -20,7 +24,7 @@
 			<ul class="slds-has-dividers_bottom-space">
 				<template for:each={choices} for:item="choice">
 					<li class="slds-item" key={choice.choiceId}>
-						<lightning-tile label={choice.choiceName} href={choice.choiceUrl} type="media">
+						<lightning-tile label={choice.choiceName} onclick={showChoiceModal} href="#" data-id={choice.choiceId} type="media">
 							<lightning-avatar slot="media"
 							                  src="https://www.lightningdesignsystem.com/assets/images/avatar1.jpg"
 							                  fallback-icon-name="standard:person_account"

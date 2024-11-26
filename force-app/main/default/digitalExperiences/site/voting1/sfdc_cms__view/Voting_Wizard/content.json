@@ -1,0 +1,67 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Voting Wizard",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"fa7d89eb-4934-4fb2-8b50-272821b26031\",\"columns\":[{\"UUID\":\"b68111c5-4781-4c5c-ab3a-e865ce4d16d5\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : { },
+              "definition" : "c:votingWizard",
+              "id" : "4a4fa1f0-969d-45bd-b125-c41227d22a88",
+              "type" : "component"
+            } ],
+            "id" : "b68111c5-4781-4c5c-ab3a-e865ce4d16d5",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "fa7d89eb-4934-4fb2-8b50-272821b26031",
+          "type" : "component"
+        } ],
+        "id" : "5d3bcdda-7818-4526-9904-790123decc1c",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "Voting Wizard",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "47fafc26-a8aa-477e-b705-504c9db3ea5f",
+          "type" : "component"
+        } ],
+        "id" : "cd1f8120-4e55-4d80-a01e-774da81c9f44",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "b0ba13a1-4523-4309-a463-879aa8c4a2e7",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "custom-voting-wizard"
+  },
+  "urlName" : "voting-wizard"
+}

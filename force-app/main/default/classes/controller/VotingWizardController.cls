@@ -3,8 +3,8 @@
  * @author Created by vassil.petkov@next-consult.com on 2024/11/24.
  */
 
-public with sharing class VotingWizardController {
-	private static final String TEST_VOTER = '001QI00000PiaSoYAJ';
+public without sharing class VotingWizardController {
+	private static String voterId;
 
 	@AuraEnabled( Cacheable=true )
 	public static Election__c getElection( Id electionId ) {
@@ -67,6 +67,9 @@ public with sharing class VotingWizardController {
 	}
 
 	private static Id getVoterId() {
-		return TEST_VOTER;
+		if( String.isBlank(voterId) ) {
+			voterId = UserSelector.getInstance().getCurrentUserAccountId();
+		}
+		return voterId;
 	}
 }

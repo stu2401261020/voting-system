@@ -14,7 +14,7 @@ export default class UpcomingElections extends LightningElement {
 			type: 'url',
 			typeAttributes: {
 				label: { fieldName: 'electionName' },
-				target: '_blank',
+				target: '_self',
 				tooltip: 'Click to see more details.'
 			}
 		},
@@ -29,11 +29,11 @@ export default class UpcomingElections extends LightningElement {
 	@wire(getUpcomingElections)
 	upcomingElections({data, error}) {
 		if (data) {
-			console.log('data', data);
 			this.data = data;
 		}
 		if (error) {
 			console.log('error', error);
+			this.refs.toastMessage.showToast('error', error.body.message, 5000);
 		}
 	}
 }

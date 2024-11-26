@@ -16,13 +16,17 @@ public with sharing class UserSelector implements IUserSelector {
 		].Contact.PermanentResidenceLocation__c;
 		Set<Id> locationIds = new Set<Id> { locationId };
 		while( true ) {
-			Id upperLocation = [SELECT Parent__c FROM Location__c WHERE Id = :locationId].Parent__c;
-			if( String.isBlank(upperLocation) ) {
+			Id upperLocation = [ SELECT Parent__c FROM Location__c WHERE Id = :locationId ].Parent__c;
+			if( String.isBlank( upperLocation ) ) {
 				break;
 			}
 			locationId = upperLocation;
-			locationIds.add(locationId);
+			locationIds.add( locationId );
 		}
 		return locationIds;
+	}
+
+	public Id getCurrentUserAccountId() {
+		return [ SELECT AccountId FROM User WHERE Id = :UserInfo.getUserId() ].AccountId;
 	}
 }

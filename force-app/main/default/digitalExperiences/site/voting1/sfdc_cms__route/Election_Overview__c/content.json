@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Election Overview",
+  "contentBody" : {
+    "activeViewId" : "Election_Overview",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-election-overview",
+    "urlPrefix" : "election-overview"
+  },
+  "urlName" : "election-overview"
+}

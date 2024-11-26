@@ -5,4 +5,5 @@
 
 public interface IUserSelector {
 	Set<Id> getCurrentUserLocationIds();
+	Id getCurrentUserAccountId();
 }
