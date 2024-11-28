@@ -10,7 +10,7 @@ public with sharing class ElectionVoterSelector implements IElectionVoterSelecto
 
 	public List<ElectionVoter__c> getElectionVoterRecord( Id electionId, Id voterId ) {
 		return [
-				SELECT HasVoted__c
+				SELECT Id
 				FROM ElectionVoter__c
 				WHERE Election__c = :electionId
 				AND Voter__c = :voterId

@@ -4,8 +4,7 @@
  */
 
 public with sharing class CheckVoteController {
-	private static final String TEST_VOTER = '001QI00000PiaSoYAJ';
-
+	private static Id voterId;
 
 	@AuraEnabled
 	public static String getVoteChoice( Id electionId, String voterPassword ) {
@@ -20,6 +19,9 @@ public with sharing class CheckVoteController {
 	}
 
 	private static Id getVoterId() {
-		return TEST_VOTER;
+		if( String.isBlank(voterId) ) {
+			voterId = UserSelector.getInstance().getCurrentUserAccountId();
+		}
+		return voterId;
 	}
 }
